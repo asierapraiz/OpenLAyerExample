@@ -1,0 +1,137 @@
+//Sidenav
+
+
+
+.logo {
+  text-align: center !important;
+}
+
+mat-drawer,
+mat-drawer-opened {
+  min-width: 12vw !important;
+  width: 15vw !important;
+  max-width: 400px !important;
+}
+
+.mat-drawer,
+.mat-drawer-inner-container,
+.right-side {
+  background-color: #7eafaff0;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(59, 92, 107, 0.315) !important;
+  box-shadow: 0px 0px 10px 0px rgba(59, 92, 107, 0.315) !important;
+}
+.mat-drawer-container {
+  height: 100vh !important;
+}
+
+.right-side {
+  padding: 15px !important;
+  display: flex !important;
+
+  h1 {
+    text-align: center !important;
+    padding: 0 !important;
+    margin: auto;
+  }
+}
+
+.mat-icon,
+.mat-list-item,
+h1 {
+  cursor: pointer !important;
+  color: white !important;
+}
+
+.mat-icon {
+  font-size: 30px;
+}
+
+.mat-list-base {
+  padding-top: 10px !important;
+}
+
+.mat-list-base .mat-list-item .mat-list-item-content {
+  text-align: center !important;
+  display: block !important;
+  padding-top: 15px !important;
+}
+
+.mat-list-item-content:hover {
+  background-color: #74b9ff !important;
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 25px;
+}
+
+.content-container {
+  height: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 95%;
+  background-color: rgba(197, 182, 114, 0.658);
+  position: relative;
+}
+
+.mat-tree {
+  background: transparent;
+}
+
+.mh-tree-invisible {
+  display: none;
+}
+
+.mh-tree ul,
+.mh-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+/*
+ * This padding sets alignment of the nested nodes.
+ */
+.mh-tree .mat-nested-tree-node div[role="group"] {
+  padding-left: 20px;
+}
+
+/*
+ * Padding for leaf nodes.
+ * Leaf nodes need to have padding so as to align with other non-leaf nodes
+ * under the same parent.
+ */
+.mh-tree div[role="group"] > .mat-tree-node {
+  padding-left: 40px;
+  cursor: pointer !important;  
+}
+.mat-tree-node,
+.mat-nested-tree-node {
+  cursor: pointer !important;
+  color: white ;
+  font-size: 20px;
+}
+
+a:hover,
+a:visited,
+a:link {
+  text-decoration: none !important;
+  color: white ;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+a:hover, a:active{
+  color: rgba(71, 153, 129, 0.897)!important;
+}
+
+.active-link {
+  border-left: 5px solid rgba(71, 153, 129, 0.897);
+  
+}
+.disabled{
+  pointer-events: none;
+   cursor: default;
+   color:gray!important;
+}

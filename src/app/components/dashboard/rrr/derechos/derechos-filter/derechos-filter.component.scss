@@ -1,0 +1,39 @@
+.form-container {    
+    display: flex;
+    flex: start;
+    }
+.form-column{
+    display:inline-block;  
+    padding:15px;    
+    width: 14%;
+}
+.campo{
+    max-width: 220px;
+    
+}
+
+.filter-buttons{
+    padding:0px 15px;
+    display: flex;
+    justify-content: flex-end;
+    >button{
+        margin-right: 5px;
+    }
+}
+
+.numeroPredial, .numeroOperacion{
+    width: 220px!important;
+  }
+
+  md-tooltip.info ._md-content{
+    white-space: normal !important;      max-width:200px;
+/*   overflow-y:scroll; */
+    max-height: 150px;
+   line-height: 20px;
+  height:auto;
+  font-size:12px;
+
+}
+.field-info{
+    text-align: end;
+}

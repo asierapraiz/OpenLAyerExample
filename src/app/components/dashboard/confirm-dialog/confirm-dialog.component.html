@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Atención!!</h1>
+<div mat-dialog-content>
+    <p>{{fromPage}}</p>
+    
+</div>
+<div class="actions">
+    <button mat-raised-button (click)="closeDialog(false)"  matTooltip="Cancelar cierre de modal">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="closeDialog(true)" matTooltip="Cerrar sin guardar">Continuar</button>
+</div>

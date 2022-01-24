@@ -1,0 +1,163 @@
+<header class="modal-header-material">
+    <h1 mat-dialog-title>{{ title}}
+    </h1>
+    
+</header>
+
+<form [formGroup]="formGroup" class="form-container">
+
+    <diV class="fields">
+
+        <!----------------------------------------------------------->
+        <div class="form-group form-column">
+
+            <mat-form-field class="col">
+                <mat-select placeholder="Predio" formControlName="predio">   
+                    <mat-option [value]="null">--</mat-option>                
+                    <mat-option *ngFor="let predio of prediosOfTerreno"
+                        [value]="predio.id">
+                        {{predio.id}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field class="campo full-width">
+                <mat-label>Identificador</mat-label>
+                <input formControlName="identificador" id="identificador" matInput>
+            </mat-form-field>              
+            
+
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Construcción tipo" formControlName="construccionTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let construccionTipo of construccionTipos" [value]="construccionTipo.descripcion">
+                        {{construccionTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            
+        </div>
+
+        <div class="form-group form-column">
+            <!----------------------------------------------------------->
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Dominio Construcción tipo" formControlName="dominioConstruccionTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let dominioConstruccionTipo of dominiosConstruccionTipos"
+                        [value]="dominioConstruccionTipo.descripcion">
+                        {{dominioConstruccionTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Unidad Construcción" formControlName="unidadConstruccionTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let unidadConstruccionTipo of unidadConstruccionTipos"
+                        [value]="unidadConstruccionTipo.descripcion">
+                        {{unidadConstruccionTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Construcción Planta" formControlName="construccionPlantaTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let construccionPlantaTipo of construccionPlantaTipos"
+                        [value]="construccionPlantaTipo.descripcion">
+                        {{construccionPlantaTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            
+
+            <!----------------------------------------------------------->
+
+
+        </div>
+        <div class="form-group form-column">
+
+            <mat-form-field class="campo full-width">
+                <mat-label>Planta Ubicación</mat-label>
+                <input formControlName="plantaUbicacion" id="plantaUbicacion" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Uso Unidad Construcción" formControlName="usoUnidadConstruccionTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let usoUnidadConstruccionTipo of usoUnidadConstruccionTipos"
+                        [value]="usoUnidadConstruccionTipo.descripcion">
+                        {{usoUnidadConstruccionTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Relación Superficie" formControlName="relacionSuperficieTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let relacionSuperficieTipo of relacionSuperficieTipos"
+                        [value]="relacionSuperficieTipo.descripcion">
+                        {{relacionSuperficieTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            
+            <!----------------------------------------------------------->
+
+        </div>
+        <div class="form-group form-column">
+            
+
+            <mat-form-field class="campo full-width">
+                <mat-label>Área Construida</mat-label>
+                <input formControlName="areaConstruida" id="areaConstruida" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="campo full-width">
+                <mat-label>Área Privada Construida</mat-label>
+                <input formControlName="areaPrivadaConstruida" id="areaPrivadaConstruida" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="campo full-width">
+                <mat-label>Altura</mat-label>
+                <input formControlName="altura" id="altura" matInput>
+            </mat-form-field>
+            <!----------------------------------------------------------->
+        </div>
+        <div class="form-group form-column">
+
+            <mat-form-field class="campo full-width">
+                <mat-select placeholder="Relación Superficie" formControlName="dimensionTipo">
+                    <mat-option [value]="null">--</mat-option>
+                    <mat-option *ngFor="let dimensionTipo of dimensionTipos" [value]="dimensionTipo.descripcion">
+                        {{dimensionTipo.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field class="campo full-width">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput formControlName="observaciones" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10">
+            </textarea>
+            </mat-form-field>
+        </div>
+    </diV>
+
+    <div class="buttons">
+        <button mat-raised-button (click)="closeModal()" class="" id="cancel" type="button"
+            matTooltip="Volver sin guardar">Cancelar
+        </button>
+        <button mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="add"
+            [disabled]="formGroup.invalid" matTooltip="Guardar terreno">Guardar</button>
+    </div>
+</form>

@@ -1,0 +1,186 @@
+<div class="container">
+  <mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav class="inner-sidenav" #sidenavL mode="side" [opened]="isShowingL">
+      <div class="side-content">
+        <app-info *ngIf="infoShowing"></app-info>
+        <app-capas *ngIf="layersShowing" [capas]="capasList"></app-capas>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div id="side-buttons">
+
+        <button mat-mini-fab (click)="infoShow()" color="primary" aria-label="Example icon button with a bookmark icon">
+          <mat-icon>info</mat-icon>
+        </button>
+        <button mat-mini-fab (click)="createUnidadConstruccion(); showMultiPolygonsList();" color="primary"
+          aria-label="Dubujar un polígono">
+          <mat-icon>draw</mat-icon>
+        </button>
+        <button mat-mini-fab (click)="showLayers()" color="primary" aria-label="Diferenciar capas">
+          <mat-icon>layers</mat-icon>
+        </button>
+      </div>
+
+      <div class="content">
+
+        <app-map (changedEmit)="mapChanged()" (editedEmitter)="updatePolygonValue($event)"></app-map>
+
+
+        <div id="right-buttons" class="button-list">
+          <div class="start">
+
+          </div>
+
+          <div class="end">
+            <button mat-mini-fab color="primary">
+              <mat-icon [matBadge]="numFiltros" matBadgeColor="accent" class="material-icons" (click)="showFilters()"
+                matTooltip="Filtrar terenos.">filter_alt
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="paginator">
+          <mat-paginator [length]="totalElements" [pageSizeOptions]="elementsPage" showFirstLastButtons>
+          </mat-paginator>
+        </div>
+
+        <div class="table-container">
+
+          <mat-spinner *ngIf="showSpinner" [diameter]="100" class="table-spinner"></mat-spinner>
+
+          <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="identificador">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Identificador</th>
+              <td mat-cell *matCellDef="let element"> {{element.identificador}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="construccionTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Construcción</th>
+              <td mat-cell *matCellDef="let element"> {{element.construccionTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dominioConstruccionTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Dominio Construcción</th>
+              <td mat-cell *matCellDef="let element"> {{element.dominioConstruccionTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unidadConstruccionTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidad Construcción</th>
+              <td mat-cell *matCellDef="let element"> {{element.unidadConstruccionTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="construccionPlantaTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Construcción Planta</th>
+              <td mat-cell *matCellDef="let element"> {{element.construccionPlantaTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="plantaUbicacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Planta Ubicación</th>
+              <td mat-cell *matCellDef="let element"> {{element.plantaUbicacion }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="usoUnidadConstruccionTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Uso</th>
+              <td mat-cell *matCellDef="let element"> {{element.usoUnidadConstruccionTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="areaConstruida">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Área Construida</th>
+              <td mat-cell *matCellDef="let element"> {{element.areaConstruida}} </td>
+            </ng-container>
+            <!--
+            <ng-container matColumnDef="areaPrivadaConstruida">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Área Privada Construida</th>
+              <td mat-cell *matCellDef="let element"> {{element.areaPrivadaConstruida}} </td>
+            </ng-container>
+            -->
+
+            <ng-container matColumnDef="altura">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Altura</th>
+              <td mat-cell *matCellDef="let element"> {{element.altura}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dimensionTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Dimensión</th>
+              <td mat-cell *matCellDef="let element"> {{element.dimensionTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="relacionSuperficieTipo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>RelacionSuperficie</th>
+              <td mat-cell *matCellDef="let element"> {{element.relacionSuperficieTipo?.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaCaptura">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha captura</th>
+              <td mat-cell *matCellDef="let element"> {{element.fechaCaptura | date: 'd-M-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaUltimaModificacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha última modificación</th>
+              <td mat-cell *matCellDef="let element"> {{element.fechaUltimaModificacion | date: 'd-M-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="autorUltimaModificacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor </th>
+              <td mat-cell *matCellDef="let element"> {{element.autorUltimaModificacion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+              <th *matHeaderCellDef mat-header-cell></th>
+              <td *matCellDef="let unidad; let i = index" [id]="'actions'+ (i + 1)" mat-cell>
+                <button mat-mini-fab color="primary" (click)="superMap.searchInMap(unidad, 'unidad')"
+                  matTooltip="Situar en el mapa">
+                  <mat-icon>location_searching</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" (click)="openAddEditModal(unidad)" matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" (click)="deleteTerreno(unidad.id)" matTooltip="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+
+                <button mat-mini-fab color="primary" class="goto" matTooltip="Ir a los elementos relacionados"
+                  [matMenuTriggerFor]="menu">
+                  <mat-icon>input</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+
+                  
+                  <button mat-menu-item routerLink="/dashboard/unidadesConstruccion/{{unidad.id}}/terreno"
+                    class="mat-bread-crumb-list-chip">Terreno</button>
+
+                  <button mat-menu-item routerLink="/dashboard/unidadesConstruccion/{{unidad.id}}/construccion"
+                    class="mat-bread-crumb-list-chip">Construcción</button>
+
+                  <button mat-menu-item routerLink="/dashboard/unidadesConstruccion/{{unidad.id}}/predio"
+                    class="mat-bread-crumb-list-chip">Predio</button>
+                </mat-menu>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="setHighLight(row.id)"
+              *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+        </div>
+      </div>
+    </mat-sidenav-content>
+
+    <mat-sidenav #sidenavR mode="side" position="end" [opened]="isShowingR">
+
+      <app-unidad-construccion-filter *ngIf="filtersForm" [filtrosUnidadConstruccion]="filtrosUnidadConstruccion"
+        id="filtros" (filtrarEvent)="filtrarEvent($event)" (limpiarFiltrosEvent)="limpiarFiltrosEvent()">
+      </app-unidad-construccion-filter>
+
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

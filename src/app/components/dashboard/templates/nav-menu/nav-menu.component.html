@@ -1,0 +1,55 @@
+<mat-drawer-container class="sidenav-container">
+  <mat-drawer #drawer mode="side" opened>
+    <div class="logo">
+      <h1>MH</h1>
+    </div>
+
+    <mat-list role="list" class="side-bar">
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mh-tree">
+
+        <mat-tree-node *matTreeNodeDef="let node" class="link" matTreeNodeToggle>
+          <a routerLinkActive="active-link"  [ngClass]="node.active"   routerLink="/dashboard/{{node.url}}"> {{node.name }}{{node.disabled}}</a>
+        </mat-tree-node>
+        
+
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <div class="mat-tree-node" matTreeNodeToggle [ngClass]="node.active">
+            <button mat-icon-button matTreeNodeToggle [ngClass]="node.active" [attr.aria-label]="'Toggle ' + node.name">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            {{node.name }}
+
+          </div>
+          <!-- There is inline padding applied to this div using styles.
+                This padding value depends on the mat-icon-button width. -->
+
+          <div [class.mh-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+            <ng-container matTreeNodeOutlet></ng-container>
+          </div>
+        </mat-nested-tree-node>
+      </mat-tree>
+
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div class="right-side">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="drawer.toggle()">reorder</mat-icon>
+
+      <app-breadcrumbs class="breadcrumbs-container"></app-breadcrumbs>
+
+      <h1>{{ruta}}</h1>
+      <button mat-icon-button class="mh-icon" (click)="logout()" aria-label="Example icon-button with menu icon">
+        <mat-icon class="logout">logout</mat-icon>
+      </button>
+    </div>
+    <div class="content-container">
+
+
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

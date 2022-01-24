@@ -1,0 +1,156 @@
+<header class="modal-header-material">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <p class="subtitle">{{subtitle}}</p>
+
+
+</header>
+<div mat-dialog-content>
+
+  <form [formGroup]="formGroup">
+
+    <div class="form-row">
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Tipo de interesado" formControlName="interesadoTipo">
+          <mat-option *ngFor="let interesadoTipo of interesadoTipos" [value]="interesadoTipo.descripcion">
+            {{interesadoTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.controls.interesadoTipo.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+
+      <button *ngIf="!agrupacionInteresados && !interesado.id" mat-raised-button color="primary" class=""
+        id="goToSelectAgrupacion" (click)="goToSelectAgrupacion()"
+        matTooltip="Ir a AgrupacionInteresados para crear/seleccionar una agrupación">Añadir
+        Agrupación</button>       
+        
+      <div *ngIf="agrupacionInteresados" id="agrupaciónInteresados" class="agrupacion">
+        <label class="subtitle">Se asociará a la agrupación:</label>
+        <p>{{agrupacionInteresados.nombre | titlecase }}</p>
+      </div>
+
+
+
+    </div>
+
+    <div class="form-row">
+
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Tipo de documento" formControlName="interesadoDocumentoTipo">
+          <mat-option *ngFor="let interesadoDocumentoTipo of interesadoDocumentoTipos"
+            [value]="interesadoDocumentoTipo.descripcion">
+            {{interesadoDocumentoTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.controls.interesadoDocumentoTipo.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width" class="dni">
+        <mat-label>Documento de identidad</mat-label>
+        <input formControlName="documentoIdentidad" id="documentoIdentidad" matInput>
+        <mat-error *ngIf="formGroup.controls.documentoIdentidad.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="form-row">
+
+      <mat-form-field class="campo full-width" class="primer-nombre">
+        <mat-label>Primer nombre</mat-label>
+        <input formControlName="primerNombre" id="primer-nombre" matInput>
+        <mat-error *ngIf="formGroup.controls.primerNombre.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width" class="segundo-nombre">
+        <mat-label>Segundo nombre</mat-label>
+        <input formControlName="segundoNombre" id="segundo-nombre" matInput>
+      </mat-form-field>
+
+    </div>
+    <div class="form-row">
+
+      <mat-form-field class="campo full-width" class="primer-apellido">
+        <mat-label>Primer apellido</mat-label>
+        <input formControlName="primerApellido" id="primer-apellido" matInput>
+        <mat-error *ngIf="formGroup.controls.primerApellido.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width" class="segundo-apellido">
+        <mat-label>Segundo apellido</mat-label>
+        <input formControlName="segundoApellido" id="segundo-apellido" matInput>
+        <mat-error *ngIf="formGroup.controls.segundoApellido.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form-row">
+
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Sexo" formControlName="sexoTipo">
+          <mat-option *ngFor="let sexoTipo of sexoTipos" [value]="sexoTipo.descripcion">
+            {{sexoTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.controls.segundoApellido.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Tipo grupo étnico" formControlName="grupoEtnicoTipo">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let grupoEtnicoTipo of grupoEtnicoTipos" [value]="grupoEtnicoTipo.descripcion">
+            {{grupoEtnicoTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.controls.segundoApellido.errors?.required">Campo requerido</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+
+      <mat-form-field class="campo full-width" class="razon-social">
+        <mat-label>Razón social</mat-label>
+        <input formControlName="razonSocial" id="razon-social" matInput>
+        <!--<mat-error *ngIf="formGroup.controls.razonSocial.errors?.required">Campo requerido</mat-error>-->
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width" class="nombre-razon-social">
+        <mat-label>Nombre razón social</mat-label>
+        <input formControlName="nombreRazonSocial" id="nombre-razon-social" matInput>
+        <!--<mat-error *ngIf="formGroup.controls.nombreRazonSocial.errors?.required">Campo requerido</mat-error>-->
+      </mat-form-field>
+    </div>
+
+
+
+    <section class="modal-buttons">
+
+      <button mat-raised-button (click)="closeModal()" class="" id="close" matTooltip="Cerrar sin guardar">Cerrar sin
+        guardar</button>
+        
+
+        <button mat-raised-button *ngIf="!isSaveOrUpdate()" (click)="saveOrUpdate()"
+        color="primary" class="" id="create" [disabled]="formGroup.invalid" matTooltip="Crear interesado">Crear
+        interesado</button>
+
+        <button  mat-raised-button *ngIf="isSaveOrUpdate()" (click)="saveOrUpdate()"
+        color="primary" class="" id="create" [disabled]="formGroup.invalid" matTooltip="Actualizar interesado">Actualizar</button>
+
+        <!--
+
+      <button *ngIf="!interesado.id  && !agrupacionInteresados" mat-raised-button (click)="saveOrUpdate()"
+        color="primary" class="" id="create" [disabled]="formGroup.invalid" matTooltip="Crear interesado">Crear
+        interesado</button>
+
+      <button *ngIf="!interesado.id && agrupacionInteresados" mat-raised-button (click)="saveWithAgrupacion()"
+        color="primary" class="" id="edit" [disabled]="formGroup.invalid" matTooltip="Guardar cambio">Crear con
+        Agrupación</button>
+
+      <button *ngIf="interesado.id" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="edit"
+        [disabled]="formGroup.invalid" matTooltip="Guardar">Guardar </button>
+        -->
+
+
+    </section>
+
+  </form>
+
+</div>

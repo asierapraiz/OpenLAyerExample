@@ -1,0 +1,26 @@
+.form-container {    
+    display: flex;
+    flex: start;
+    }
+.form-column{
+    display:inline-block;  
+    padding:15px;    
+    width: 14%;
+}
+.campo{
+    max-width: 220px;
+    
+}
+
+.filter-buttons{
+    padding:0px 15px;
+    display: flex;
+    justify-content: flex-end;
+    >button{
+        margin-right: 5px;
+    }
+}
+
+.field-info{
+    text-align: end;
+}

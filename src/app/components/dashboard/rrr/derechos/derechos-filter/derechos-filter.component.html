@@ -1,0 +1,106 @@
+<form [formGroup]="formGroup">
+    <div class="form-column">
+<!--         <mat-form-field class="campo full-width">
+            <mat-select placeholder="Derecho" formControlName="id">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let derecho of derechos" [value]="derecho">
+                    {{derecho.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Tipo" formControlName="derechoTipoId">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let derechotipo of derechostipos" [value]="derechotipo.id">
+                    {{derechotipo.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="campo full-width">
+            <mat-label>Fracción</mat-label>
+            <input formControlName="fraccionDerecho" id="fraccionDerecho" matInput>
+            <!-- <span matSuffix><mat-icon class="field-info" matTooltip="Introduce el número de fracción del derecho" >info</mat-icon></span> -->
+            <mat-hint>Valor entre 0 y 1</mat-hint>
+            <mat-error *ngIf="formGroup.controls.fraccionDerecho.errors?.required">Campo requerido</mat-error>
+            <mat-error *ngIf="formGroup.controls.fraccionDerecho.errors?.min">Valor mínimo 0</mat-error>
+            <mat-error *ngIf="formGroup.controls.fraccionDerecho.errors?.max">Valor máximo 1</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="form-column">
+        <mat-form-field class="campo full-width">
+            <mat-label>Descripcion</mat-label>
+            <input formControlName="descripcion" id="descripcion" matInput>
+        </mat-form-field>
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Interesado" formControlName="interesadoId">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let interesado of interesados" [value]="interesado.id">
+                    {{interesado.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="form-column">
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Predio" formControlName="predioId">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let predio of predios" [value]="predio.id">
+                    {{predio.id}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Agrupación de Intereado" formControlName="agrupacionInteresadoId">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let agrupacion of agrupacioninteresados" [value]="agrupacion.id">
+                    {{agrupacion.id}} - {{agrupacion.nombre}}
+                </mat-option>
+            </mat-select>     
+        </mat-form-field>
+       
+    </div>
+    <div class="form-column">
+
+        <mat-form-field>
+            <mat-label>Fecha de inicio de tenencia</mat-label>
+            <mat-date-range-input [rangePicker]="picker1">
+                <input formControlName="fechaInicioTenenciaStartDate" matStartDate placeholder="Inicio">
+                <input formControlName="fechaInicioTenenciaEndDate" matEndDate placeholder="Fin">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker1></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Fecha última modificación</mat-label>
+            <mat-date-range-input [rangePicker]="picker2">
+                <input formControlName="fechaUltimaModificacionStartDate" matStartDate placeholder="Inicio">
+                <input formControlName="fechaUltimaModificacionEndDate" matEndDate placeholder="Fin">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker2></mat-date-range-picker>
+        </mat-form-field>
+
+
+
+
+
+
+<!--         <mat-form-field appearance="fill">
+            <mat-label>Fecha de inicio de tenencia</mat-label>
+            <input formControlName="fechaInicioTenencia" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field> -->
+
+    </div>
+    <div class="filter-buttons">
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="filtrar()" matTooltip="Filtrar predios.">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="limpiarFiltros()" matTooltip="Limpiar filtros">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</form>

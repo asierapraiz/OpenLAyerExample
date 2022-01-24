@@ -1,0 +1,46 @@
+<div class="divgeneral">
+    <div class="divlabelbuscar">
+        <label for="input-file-id" class="md-button md-raised md-primary">Buscar Archivo</label>
+    </div>
+    <div class="divlabelbuscar">
+        <div>
+            <button mat-mini-fab color="primary" class="" id="search" type="button" (click)="fileInput.click()" matTooltip="Buscar" [disabled]="showSpinner==true">
+                <input id="input-file-id" #fileInput type="file" (change)="selectFile($event)" style="display:none;" />
+                <mat-icon>folder</mat-icon>
+            </button>
+        </div>
+
+        <div class="divspan">
+            <span *ngIf="nombre">{{nombre}}</span><br>
+            <span *ngIf="!nombre"></span>
+        </div>
+    </div>
+
+    <div class="divlabelbuscar">
+        <div>
+            <mat-select placeholder="Tipo" [(value)]="nombredestino" [disabled]="!nombre || showSpinner==true">                
+                <mat-option *ngFor="let destino of destinos" [value]="destino.path">
+                    {{destino.nombre}}
+                </mat-option>
+            </mat-select>
+        </div>
+    </div>
+
+    <div class="divlabelbuscar">
+        <div class="divspan">
+            <button mat-mini-fab color="primary" class="" id="sent" (click)="enviar()" matTooltip="Enviar" [disabled]="!nombre || !nombredestino || showSpinner==true"> 
+                <mat-icon>cloud_upload</mat-icon>
+            </button>
+        </div>
+        <div class="divspan">
+            <span *ngIf="nombre && nombredestino">Enviar y Validar</span>
+        </div>
+        <div class="divspinner">
+            <mat-spinner  *ngIf="showSpinner" [diameter]="100" class="table-spinner"></mat-spinner>
+        </div>   
+    </div>
+    <div class="divspan">
+        <span class="spanmensaje" *ngIf="mensaje">{{mensaje}}</span>
+        <span class="spanerror" *ngIf="error">{{error}}</span>
+    </div>   
+</div>

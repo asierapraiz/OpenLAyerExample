@@ -1,0 +1,61 @@
+<form [formGroup]="formGroup">
+  
+
+    <div class="form-row">
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Tipo grupo agrupación" formControlName="grupoInteresadoTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let grupoInteresadoTipo of aiTipos" [value]="grupoInteresadoTipo">
+                    {{grupoInteresadoTipo.descripcion}}--{{grupoInteresadoTipo.id}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width" class="nombre">
+            <mat-label>Nombre del grupo</mat-label>
+            <input formControlName="nombre" id="nombre" matInput>
+            <mat-error *ngIf="formGroup.controls.nombre.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+            <mat-label>Usuario modificación</mat-label>
+            <input formControlName="autorUltimaModificacion" id="autorUltimaModificacion" matInput>
+        </mat-form-field>   
+
+        <mat-form-field>
+            <mat-label>Fecha captura</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input formControlName="fechaCapturaStartDate" matStartDate placeholder="Start date">
+                <input formControlName="fechaCapturaEndDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Fecha mod</mat-label>
+            <mat-date-range-input [rangePicker]="picker2">
+                <input formControlName="fechaUltimaModificacionStartDate" matStartDate placeholder="Start date">
+                <input formControlName="fechaUltimaModificacionEndDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker2></mat-date-range-picker>
+        </mat-form-field>
+
+        
+    </div>
+
+
+    <div class="filter-buttons">
+
+
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="filtrar()" matTooltip="Filtrar predios.">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="limpiarFiltros()"
+            matTooltip="Limpiar filtros">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</form>

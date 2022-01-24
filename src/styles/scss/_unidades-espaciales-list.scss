@@ -1,0 +1,117 @@
+
+
+table {
+    width: 100%;
+    min-height: auto;
+  }
+  
+  .paginator {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .map {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .mat-header-cell,
+  .mat-cell {
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .mat-column-acciones {
+    min-width: 170px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  #right-buttons {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+
+    button{
+      margin-right: 5px;;
+    }
+  }
+  
+  .mat-mini-fab {
+    margin-right: 5px;
+  }
+  .options {
+    padding: 60px 5px;
+    min-height: 100%;
+    background-color: rgb(159, 199, 199);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .sidenav-content {
+    display: flex;
+    flex-direction: row;
+  }
+  .content {
+    width: 100%;
+  }
+  .side-panel {
+    width: 300px;
+    min-height: 100%;
+    background-color: white;
+  }  
+ 
+  
+  .mat-paginator-container {
+    min-height: 35px !important;
+  }  
+
+  
+  .button-list {
+    display: flex;
+    justify-content: space-between;
+    height:0px;
+    transform: translateY(45px);
+    .start {
+      justify-content: flex-start;
+    }
+    .end {
+      justify-content: flex-end;
+    }
+  }
+  
+  .mat-drawer {
+    width: 270px !important;
+  }
+  
+  #side-buttons {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 95%;
+    z-index: 10;
+    padding: 10px;
+
+    button{
+      margin-top: 5px;
+    }
+  }
+
+  .highlight {
+    background-color: aquamarine!important;
+}
+
+table {
+    width: 100%;
+}
+.table-container {
+    height: 400px;
+    max-width: 100%;
+    overflow: auto;
+}
+  
+  

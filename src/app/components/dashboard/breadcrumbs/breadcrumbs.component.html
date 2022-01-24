@@ -1,0 +1,9 @@
+
+<mat-chip-list  class="breadcrumbs-container">
+  <mat-chip *ngFor="let chip of breadcrumb" selected>
+    <a *ngIf="chip?.url" [routerLink]="chip?.url" class="mat-bread-crumb-list-chip" [ngStyle]="{'font-size': fontSize}"
+      [ngStyle]="{'color': fontColor}">{{ chip.label }}</a>
+    <span *ngIf="!chip?.url" class="mat-bread-crumb-list-chip" [ngStyle]="{'font-size': fontSize}"
+      [ngStyle]="{'color': lastLinkColor}">{{ chip.label }}</span>
+  </mat-chip>
+</mat-chip-list>

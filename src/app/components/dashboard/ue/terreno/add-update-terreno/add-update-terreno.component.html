@@ -1,0 +1,64 @@
+<header class="modal-header-material">
+  <h1 mat-dialog-title>{{ getTitle()}}
+  </h1>
+</header>
+<form [formGroup]="formGroup" class="form-container">
+
+  <div class="fields">
+
+    <div class="form-group form-column">
+      <mat-form-field class="col">
+        <mat-label>Área de terreno</mat-label>
+        <input cdkFocusInitial formControlName="areaTerreno" name="areaTerreno" id="areaTerreno" matInput required
+          type="number" min="0">
+        <mat-error *ngIf="formGroup.controls.areaTerreno.errors?.required">
+          El valor es requerido
+        </mat-error>
+        <mat-error *ngIf="formGroup.controls.areaTerreno.errors?.min">
+          El valor debe ser mayor que 0
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col">
+        <mat-label>Local id</mat-label>
+        <input formControlName="localId" id="localId" matInput required>
+        <mat-error *ngIf="formGroup.controls.localId.errors?.required">Local id obligatorio
+        </mat-error>
+      </mat-form-field>
+
+    </div><!--Fin Column-->
+
+    <div class="form-group form-column">
+
+      <mat-form-field class="col">
+        <mat-select placeholder="Dimensión tipo" formControlName="dimensionTipo">
+          <mat-option *ngFor="let dimensionTipo of dimensionTipos" [value]="dimensionTipo.descripcion">
+            {{dimensionTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field class="col">
+        <mat-select placeholder="Relación superficie tipo" formControlName="relacionSuperficieTipo">
+          <mat-option *ngFor="let relacionSuperficieTipo of relacionSuperficieTipos "
+            [value]="relacionSuperficieTipo.descripcion">
+            {{relacionSuperficieTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div> <!--Fin Column-->
+
+  </div> <!--Fin Fields-->
+
+
+  <div class="buttons">
+    <button mat-raised-button (click)="closeModal()" class="" id="cancel" type="button"
+      matTooltip="Volver sin guardar">Cancelar
+    </button>
+    <button mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="add" [disabled]="formGroup.invalid"
+      matTooltip="Guardar terreno">Guardar</button>
+  </div>
+
+</form>

@@ -1,0 +1,141 @@
+<form [formGroup]="formGroup">
+    <div class="form-column">
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Tipo de documento" formControlName="tipoDocumento">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let tipoDocumento of interesadoDocumentoTipos" [value]="tipoDocumento">
+                    {{tipoDocumento.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width" class="dni">
+            <mat-label>Docuemento de identidad</mat-label>
+            <input formControlName="documentoIdentidad" id="documentoIdentidad" matInput>
+            <mat-error *ngIf="formGroup.controls.documentoIdentidad.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div class="form-column">
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Tipo de interesado" formControlName="interesadoTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let interesadoTipo of interesadoTipos" [value]="interesadoTipo">
+                    {{interesadoTipo.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width" class="primer-nombre">
+            <mat-label>Primer nombre</mat-label>
+            <input formControlName="primerNombre" id="primer-nombre" matInput>
+            <mat-error *ngIf="formGroup.controls.primerNombre.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+
+        <mat-form-field class="campo full-width" class="primer-apellido">
+            <mat-label>Primer apellido</mat-label>
+            <input formControlName="primerApellido" id="primer-apellido" matInput>
+            <mat-error *ngIf="formGroup.controls.primerApellido.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width" class="segundo-apellido">
+            <mat-label>Segundo apellido</mat-label>
+            <input formControlName="segundoApellido" id="segundo-apellido" matInput>
+            <mat-error *ngIf="formGroup.controls.segundoApellido.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div class="form-column">
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Sexo" formControlName="sexoTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let sexoTipo of sexoTipos" [value]="sexoTipo">
+                    {{sexoTipo.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Tipo grupo étnico" formControlName="grupoEtnicoTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let grupoEtnicoTipo of grupoEtnicoTipos" [value]="grupoEtnicoTipo">
+                    {{grupoEtnicoTipo.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+
+        <mat-form-field class="campo full-width" class="razon-social">
+            <mat-label>Razón social</mat-label>
+            <input formControlName="razonSocial" id="razon-social" matInput>
+            <mat-error *ngIf="formGroup.controls.razonSocial.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width" class="nombre-razon-social">
+            <mat-label>Nombre razón social</mat-label>
+            <input formControlName="nombreRazonSocial" id="nombre-razon-social" matInput>
+            <mat-error *ngIf="formGroup.controls.nombreRazonSocial.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+        <!--
+        <mat-form-field>
+            <mat-label>Fecha captura</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input formControlName="fechaCapturaStartDate" matStartDate placeholder="Start date">
+                <input formControlName="fechaCapturaEndDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        -->
+
+        <mat-form-field>
+            <mat-label>Fecha última modificación</mat-label>
+            <mat-date-range-input [rangePicker]="picker2">
+                <input formControlName="fechaUltimaModificacionStartDate" matStartDate placeholder="Start date">
+                <input formControlName="fechaUltimaModificacionEndDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker2></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+            <mat-label>Usuario modificación</mat-label>
+            <input formControlName="autorUltimaModificacion" id="autorUltimaModificacion" matInput>
+        </mat-form-field>
+    </div>
+
+
+
+
+
+
+    <div class="filter-buttons">
+
+
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="filtrar()" matTooltip="Filtrar predios.">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="limpiarFiltros()"
+            matTooltip="Limpiar filtros">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</form>

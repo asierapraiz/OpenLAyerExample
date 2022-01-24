@@ -1,0 +1,32 @@
+.modal-header-material {
+    text-align: center;
+}
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    > .mat-form-field {
+        margin: 25px;
+    }
+}
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+.mat-form-field {
+    width: 230px !important;
+}
+.numeroPredial,
+.numeroOperacion {
+    width: 300px !important;
+}
+.mat-dialog-title {
+    font-size: 30px !important;
+    font-weight: 900 !important;
+}
+
+.mat-dialog-title {
+    color: grey;
+}

@@ -1,0 +1,54 @@
+
+
+.mat-drawer {
+    min-width: 400px;
+}
+
+#togler{
+    display: flex;    
+    justify-content: end; 
+}
+
+#map-inside-toggler{
+    z-index: 10000;
+    overflow: visible;
+    transform: translateX(15px);
+}
+
+
+
+#counter{
+    transform: translateY(-120px);    
+}
+
+#actual-zoom{
+    transform: translateY(-50px);    
+}
+
+#mouse-position{
+    transform: translateY(-25px);   
+}
+
+#zoom-label {
+    font-weight: 700;
+}
+.numFeatures{
+    label{
+        font-weight: 700;
+    }
+}
+
+#counter, #actual-zoom, #mouse-position{
+    height:0px;
+    color: black;
+    margin-left:10px;    
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+
+.alert{   
+    background: rgba(202, 139, 66, 0.74)!important;
+    margin-top: 100px!important;
+}

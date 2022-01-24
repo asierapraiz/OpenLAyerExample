@@ -1,0 +1,45 @@
+.mat-bread-crumb {
+  height: 30px;
+  background-color: rgb(241, 239, 235);
+}
+.mat-bread-crumb-list {
+  padding-bottom: 10px;
+}
+.mat-bread-crumb-list-item {
+  font-size: 15px;
+}
+
+.mat-bread-crumb-spacer {
+  margin-left: -20px;
+}
+
+.mat-standard-chip {
+  margin: 1px !important;
+  border: 1px solid #f3f6f7e3;
+  //-webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.29);
+  //box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.29);
+}
+a:hover,
+a:visited,
+a:link {
+  text-decoration: none !important;
+
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+a:hover,
+a:active {
+  color: rgba(71, 153, 129, 0.897) !important;
+}
+.mat-bread-crumb-list-chip {
+  color: white !important;
+}
+
+.breadcrumbs-container {
+  display: flex;
+  justify-content: right;
+  padding-left: 30px;
+  padding-top: 3px;
+ 
+}

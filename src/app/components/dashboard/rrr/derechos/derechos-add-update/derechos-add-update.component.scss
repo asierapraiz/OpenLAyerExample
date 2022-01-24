@@ -1,0 +1,47 @@
+.modal-header-material {
+    text-align: center;
+}
+.subtitle {
+    font-size: 15px;
+    color: gray;
+}
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    > .mat-form-field {
+        margin: 25px;
+    }
+}
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+.mat-form-field {
+    width: 230px !important;
+}
+.numeroPredial,
+.numeroOperacion {
+    width: 300px !important;
+}
+.mat-dialog-title {
+    font-size: 30px !important;
+    font-weight: 900 !important;
+}
+
+.mat-form-field {
+    margin: 5px !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    margin-bottom: -0.9em;
+}
+
+.disclaimer{
+    font-size: 11px;
+    color: grey;
+}
+
+

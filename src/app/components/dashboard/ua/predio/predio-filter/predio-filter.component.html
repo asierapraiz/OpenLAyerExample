@@ -1,0 +1,157 @@
+<form [formGroup]="formGroup">
+    <div class="form-column">
+        <!--
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Departamento" formControlName="departamento">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let departamento of departamentos" [value]="departamento">
+                    {{departamento}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Municipio" formControlName="municipio">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let municipio of municipios" [value]="municipio">
+                    {{municipio}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        -->
+
+        <mat-form-field class="campo full-width">
+            <mat-label>Departamento</mat-label>
+            <input formControlName="departamento" id="departamento" matInput>
+            <span matSuffix><mat-icon class="field-info" matTooltip="Introduce el nombre del departamento" >info</mat-icon></span>
+            
+            <mat-error *ngIf="formGroup.controls.operacion.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="campo full-width">
+            <mat-label>Municipio</mat-label>
+            <input formControlName="municipio" id="municipio" matInput>
+            <span matSuffix><mat-icon class="field-info" matTooltip="Introduce el nombre del municipio" >info</mat-icon></span>
+            <mat-error *ngIf="formGroup.controls.operacion.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+        <mat-form-field class="campo full-width" class="numeroPredial">
+            <mat-label>Numero predial</mat-label>
+            <input formControlName="numeroPredial" id="numeroPredial" matInput>
+            <mat-error *ngIf="formGroup.controls.numeroPredial.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width" class="numeroOperacion">
+            <mat-label>Id operación</mat-label>
+            <input formControlName="operacion" id="operacion" matInput>
+            <mat-error *ngIf="formGroup.controls.operacion.errors?.required">Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Clase suelo" formControlName="claseSueloTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let claseSuelo of claseSuelosTipos" [value]="claseSuelo">
+                    {{claseSuelo.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Condición" formControlName="condicionPredioTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let condicion of condicionPredioTipos" [value]="condicion">
+                    {{condicion.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Categoría suelo" formControlName="categoriaSueloTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let caegoriaSuelo of categoriaSuelosTipos" [value]="caegoriaSuelo">
+                    {{caegoriaSuelo.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Dest económica" formControlName="destinacionEconomicaTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let destEconomica of destEconomicasTipos" [value]="destEconomica">
+                    {{destEconomica.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Tipo predio" formControlName="predioTipo">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let tipoPredio of prediosTipos" [value]="tipoPredio">
+                    {{tipoPredio.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="campo full-width">
+            <mat-select placeholder="Estado" formControlName="estadoPredio">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let estado of estadosPredioTipos" [value]="estado">
+                    {{estado.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="form-column">
+
+        <mat-form-field>
+            <mat-label>Fecha captura</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input formControlName="fechaCapturaStartDate" matStartDate placeholder="Start date">
+                <input formControlName="fechaCapturaEndDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Fecha mod</mat-label>
+            <mat-date-range-input [rangePicker]="picker2">
+                <input formControlName="fechaUltimaModificacionStartDate" matStartDate placeholder="Start date">
+                <input formControlName="fechaUltimaModificacionEndDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker2></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+            <mat-label>Usuario modificación</mat-label>
+            <input formControlName="autorUltimaModificacion" id="autorUltimaModificacion" matInput>
+        </mat-form-field>
+    </div>
+
+
+    <div class="filter-buttons">
+
+
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="filtrar()" matTooltip="Filtrar predios.">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="limpiarFiltros()" matTooltip="Limpiar filtros">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</form>

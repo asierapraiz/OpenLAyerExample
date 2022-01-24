@@ -1,0 +1,110 @@
+<div class="filtros">
+
+  <form [formGroup]="formGroup">
+
+    <h3 class="primary title">Filtrar construcciones:</h3>
+
+   
+
+
+    <section class="form-group column">
+      
+      <mat-form-field class="campo full-width">
+        <mat-label>Id</mat-label>
+        <input formControlName="id" id="id" matInput>  
+      </mat-form-field>      
+
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Construcción tipo" formControlName="construccionTipo">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let construccionTipo of construccionTipos" [value]="construccionTipo">
+            {{construccionTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Dominio Construcción tipo" formControlName="dominioConstruccionTipo">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let dominioConstruccionTipo of dominiosConstruccionTipos"
+            [value]="dominioConstruccionTipo">
+            {{dominioConstruccionTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+
+      <mat-form-field class="campo full-width">
+        <mat-label>Año de construcción</mat-label>
+        <input formControlName="anioConstruccion" id="anioConstruccion" matInput>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width">
+        <mat-label>Area de construcción</mat-label>
+        <input formControlName="areaConstruccion" id="areaConstruccion" matInput>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width">
+        <mat-label>Observaciones</mat-label>
+        <input formControlName="observaciones" id="observaciones" matInput>
+      </mat-form-field>
+
+
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Dimensión tipo" formControlName="dimensionTipo">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let dimensionTipo of dimensionTipos" [value]="dimensionTipo">
+            {{dimensionTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width ">
+        <mat-select placeholder="Relación superficie tipo" formControlName="relacionSuperficieTipo">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let relacionSuperficieTipo of relacionSuperficieTipos " [value]="relacionSuperficieTipo">
+            {{relacionSuperficieTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width">
+        <mat-label>Usuario modificación</mat-label>
+        <input formControlName="autorUltimaModificacion" id="autorUltimaModificacion" matInput>
+    </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha carga</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input formControlName="fechaCargaStartDate" matStartDate placeholder="Start date">
+            <input formControlName="fechaCargaEndDate" matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Fecha mod</mat-label>
+        <mat-date-range-input [rangePicker]="picker2">
+            <input formControlName="fechaUltimaModificacionStartDate" matStartDate placeholder="Start date">
+            <input formControlName="fechaUltimaModificacionEndDate" matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker2></mat-date-range-picker>
+    </mat-form-field>
+
+      <div class="filter-buttons">
+
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="emitFiltrar()">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="" id="filter" (click)="limpiarFiltros()">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+    </section>
+  </form>
+
+</div>

@@ -1,0 +1,37 @@
+header{
+    text-align:center;
+}
+.form-container {    
+    display: flex;
+    flex-direction: column;   
+}
+
+.fields{
+    display: flex; 
+}
+
+.form-column{    
+    display:flex; 
+    flex-direction: column; 
+    padding:15px;       
+}
+
+.form-row{    
+    display:flex; 
+    flex-direction: row; 
+    padding:15px;       
+}
+
+.campo{
+    max-width: 220px;    
+}
+
+
+.field-info{
+    text-align: end;
+}
+
+.buttons{
+    display: flex;
+    justify-content:space-around;
+}

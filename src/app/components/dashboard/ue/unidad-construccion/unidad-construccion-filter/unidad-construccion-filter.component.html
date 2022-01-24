@@ -1,0 +1,132 @@
+<div class="filtros">
+
+    <form [formGroup]="formGroup">
+  
+      <p class="primary title">Filtrar unidades de construcción:</p>
+  
+      <section class="form-group column">
+  
+        <mat-form-field class="campo full-width">
+          <mat-label>Id</mat-label>
+          <input formControlName="id" id="id" matInput>  
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+          <mat-label>Identificador</mat-label>
+          <input formControlName="identificador" id="identificador" matInput>
+        </mat-form-field>
+  
+        <mat-form-field class="campo full-width">
+          <mat-select placeholder="Construcción tipo" formControlName="construccionTipo">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let construccionTipo of construccionTipos" [value]="construccionTipo">
+              {{construccionTipo.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field class="campo full-width">
+          <mat-select placeholder="Dominio Construcción tipo" formControlName="dominioConstruccionTipo">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let dominioConstruccionTipo of dominiosConstruccionTipos"
+              [value]="dominioConstruccionTipo">
+              {{dominioConstruccionTipo.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+          <mat-select placeholder="Unidad Construcción" formControlName="unidadConstruccionTipo">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let unidadConstruccionTipo of unidadConstruccionTipos"
+              [value]="unidadConstruccionTipo">
+              {{unidadConstruccionTipo.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+          <mat-select placeholder="Construcción Planta" formControlName="construccionPlantaTipo">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let construccionPlantaTipo of construccionPlantaTipos"
+              [value]="construccionPlantaTipo">
+              {{construccionPlantaTipo.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+          <mat-label>Planta Ubicación</mat-label>
+          <input formControlName="plantaUbicacion" id="plantaUbicacion" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+          <mat-select placeholder="Uso Unidad Construcción" formControlName="usoUnidadConstruccionTipo">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let usoUnidadConstruccionTipo of usoUnidadConstruccionTipos"
+              [value]="usoUnidadConstruccionTipo">
+              {{usoUnidadConstruccionTipo.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+       
+
+        <mat-form-field class="campo full-width">
+          <mat-select placeholder="Dimensión" formControlName="dimensionTipo">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let dimensionTipo of dimensionTipos"
+              [value]="dimensionTipo">
+              {{dimensionTipo.descripcion}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="campo full-width">
+          <mat-label>Área Construida</mat-label>
+          <input formControlName="areaConstruida" id="areaConstruida" matInput>
+        </mat-form-field>         
+
+        <mat-form-field class="campo full-width">
+          <mat-label>Observaciones</mat-label>
+          <input formControlName="observaciones" id="observaciones" matInput>
+        </mat-form-field>   
+        
+        <mat-form-field class="campo full-width">
+          <mat-label>Usuario modificación</mat-label>
+          <input formControlName="autorUltimaModificacion" id="autorUltimaModificacion" matInput>
+      </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Fecha captura</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+              <input formControlName="fechaCapturaStartDate" matStartDate placeholder="Start date">
+              <input formControlName="fechaCapturaEndDate" matEndDate placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+  
+      <mat-form-field>
+          <mat-label>Fecha mod</mat-label>
+          <mat-date-range-input [rangePicker]="picker2">
+              <input formControlName="fechaUltimaModificacionStartDate" matStartDate placeholder="Start date">
+              <input formControlName="fechaUltimaModificacionEndDate" matEndDate placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker2></mat-date-range-picker>
+      </mat-form-field>
+  
+        <div class="filter-buttons">
+  
+          <button mat-mini-fab color="primary" class="" id="filter" (click)="filtrar()">
+            <mat-icon>search</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" class="" id="filter" (click)="limpiarFiltros()">
+            <mat-icon>delete</mat-icon>
+          </button>  
+        </div>
+
+      </section>
+    </form>
+  
+  </div>

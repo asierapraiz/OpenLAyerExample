@@ -1,0 +1,22 @@
+<div class="logo">
+  
+
+  <mat-card  class="box login-card backgroud accent" >
+    <form (ngSubmit)="login()" [formGroup]="formGroup" class="login">
+
+      <mat-card-content class="">
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" required>
+        </mat-form-field>
+      </mat-card-content>
+
+      <button mat-stroked-button color="light-green" class="btn-block btn-login ancho light-green">Login</button>
+    </form>
+  </mat-card>
+
+</div>

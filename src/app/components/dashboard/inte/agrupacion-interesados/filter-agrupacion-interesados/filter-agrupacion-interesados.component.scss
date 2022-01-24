@@ -1,0 +1,30 @@
+.form-container {  
+    
+    display: flex;
+    flex: start;
+}
+
+.form-row{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px!important;  
+    margin-bottom: 20px;
+}
+
+.campo{
+    max-width: 220px;
+    
+}
+
+.filter-buttons{
+    padding:0px 15px;
+    display: flex;
+    justify-content: flex-end;
+    >button{
+        margin-right: 5px;
+    }
+}
+
+.field-info{
+    text-align: end;
+}

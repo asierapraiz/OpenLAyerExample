@@ -1,0 +1,11 @@
+<div class="container">
+    <h1 mat-dialog-title>Atención!!</h1>
+    <div mat-dialog-content>
+        <p>{{message}}</p>
+
+    </div>
+    <div class="actions">
+        <button mat-raised-button color="primary" (click)="closeDialog(true)">{{confirmBtnText}}</button>
+        <button mat-raised-button color="primary" (click)="closeDialog(false)">{{closeBtnText}}</button>
+    </div>
+</div>

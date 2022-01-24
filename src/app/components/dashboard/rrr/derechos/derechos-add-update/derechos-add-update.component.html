@@ -1,0 +1,125 @@
+<header class="modal-header-material">
+    <h1 mat-dialog-title>{{title}}</h1>
+  </header>
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+<!--       <mat-form-field class="campo full-width">
+        <mat-label>Tipo</mat-label>
+        <mat-select placeholder="{{data.datos.derechoTipoId}}" formControlName="derechoTipoId">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let derechotipo of derechostipos" [value]="derechotipo">
+            {{derechotipo.id}} - {{derechotipo.descripcion}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Tipo*" formControlName="derechoTipoId">
+        <!-- <mat-option [value]="null">--</mat-option> -->
+        <mat-option *ngFor="let derechotipo of derechostipos" [value]="derechotipo.id"><!--  - {{derechotipo.descripcion}} -->
+          {{derechotipo.id}} - {{derechotipo.descripcion}}
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formGroup.controls.derechoTipoId.errors?.required">Campo requerido</mat-error>
+  </mat-form-field>
+
+    <mat-form-field class="campo full-width">
+        <mat-label>Descripcion*</mat-label>
+        <input formControlName="descripcion" id="descripcion" matInput><!-- placeholder="{{data.datos.descripcion}}" -->
+        <mat-error *ngIf="formGroup.controls.descripcion.errors?.required">Campo requerido</mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="campo full-width">
+      <mat-label>Interesado**</mat-label>
+      <mat-label *ngIf="data.datos.interId" >: {{data.datos.interId}} </mat-label>
+      <input *ngIf="data.datos.interId" formControlName="interesadoId" id="interesadoId" matInput [readonly]=true>
+      <mat-select *ngIf="data.datos.interesadoId" formControlName="interesadoId" (selectionChange)="getAllPrediosByInteresadoId($event.value); checkValidator();">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let interesado of interesados" [value]="interesado.id">
+            {{interesado.id}}-{{interesado.nombre}}
+          </mat-option>
+      </mat-select>
+      <mat-hint *ngIf="formGroup.value.agrupacionInteresadoId && formGroup.value.interesadoId" style="color: red;">Completa sólo uno</mat-hint>
+      <mat-hint *ngIf="!formGroup.value.interesadoId && !formGroup.value.agrupacionInteresadoId" style="color: red;">Necesario completar uno de los dos</mat-hint>
+    </mat-form-field> -->
+
+    <mat-form-field class="campo full-width">
+      <mat-label>Interesado**</mat-label>
+      <mat-label *ngIf="data.datos.interId" >: {{data.datos.interId}} </mat-label>
+      <input *ngIf="data.datos.interId" formControlName="interesadoId" id="interesadoId" matInput [readonly]=true>
+      <mat-select *ngIf="!data.datos.interId" formControlName="interesadoId" (selectionChange)="getAllPrediosByInteresadoId($event.value); checkValidator();">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option *ngFor="let interesado of interesados" [value]="interesado.id">
+            {{interesado.id}}-{{interesado.nombre}}
+          </mat-option>
+      </mat-select>
+      <mat-hint *ngIf="(formGroup.value.interesadoId || data.datos.interId) && formGroup.value.agrupacionInteresadoId" style="color: red;">Completa sólo uno</mat-hint>
+      <mat-hint *ngIf="!formGroup.value.interesadoId && !formGroup.value.agrupacionInteresadoId && !data.datos.interId" style="color: red;">Necesario completar uno de los dos</mat-hint>
+    </mat-form-field>
+
+
+    </div> 
+    <div class="form-row">
+        <mat-form-field class="campo full-width">
+            <mat-label>Fracción*</mat-label>
+            <input formControlName="fraccionDerecho" id="fraccionDerecho" placeholder="{{data.datos.fraccionDerecho}}" matInput>
+            <mat-hint>Valor entre 0 y 1</mat-hint>
+            <mat-error *ngIf="formGroup.controls.fraccionDerecho.errors?.required">Campo requerido</mat-error>
+            <mat-error *ngIf="formGroup.controls.fraccionDerecho.errors?.min">Valor mínimo 0</mat-error>
+            <mat-error *ngIf="formGroup.controls.fraccionDerecho.errors?.max">Valor máximo 1</mat-error>       
+        </mat-form-field>
+        <mat-form-field class="campo full-width">
+          <mat-label>Predio*</mat-label>
+          <mat-select formControlName="predioId"><!-- (selectionChange)="getAllinteresadosByPredioId($event.value)" --><!-- placeholder="{{data.datos.predioId}}" -->
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let predio of predios" [value]="predio.id">
+                {{predio.id}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroup.controls.predioId.errors?.required">Campo requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field class="campo full-width">
+          <mat-label>Agrupación**</mat-label>
+          <mat-select formControlName="agrupacionInteresadoId" (selectionChange)="checkValidator();">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let agrupacion of agrupacioninteresados" [value]="agrupacion.id">
+              {{agrupacion.id}} - {{agrupacion.nombre}}
+            </mat-option>
+          </mat-select> 
+          <mat-error *ngIf="formGroup.controls.agrupacionInteresadoId.errors?.required">Campo requerido</mat-error>   
+          <mat-hint *ngIf="(formGroup.value.interesadoId || data.datos.interId) && formGroup.value.agrupacionInteresadoId" style="color: red;">Completa sólo uno</mat-hint>
+          <mat-hint *ngIf="!formGroup.value.interesadoId && !formGroup.value.agrupacionInteresadoId && !data.datos.interId" style="color: red;">Necesario completar uno de los dos</mat-hint>
+        </mat-form-field> 
+<!--         <mat-form-field>
+            <mat-label>Fecha de inicio de tenencia</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input formControlName="fechaInicioTenenciaStart" matStartDate placeholder="Start date">
+                <input formControlName="fechaInicioTenenciaEnd" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-error *ngIf="formGroup.controls.fechaInicioTenencia.errors?.required">Campo requerido</mat-error>  
+        </mat-form-field> -->
+    </div>
+    <div class="form-row">        
+        <mat-form-field appearance="fill">
+            <mat-label>Inicio de tenencia*</mat-label>
+            <input formControlName="fechaInicioTenencia" matInput [matDatepicker]="picker" placeholder="data.datos.fechaInicioTenencia" [value]="data.datos.fechaInicioTenencia">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls.fechaInicioTenencia.errors?.required">Campo requerido</mat-error>  
+          </mat-form-field>
+    </div>  
+    <div class="form-row">        
+      <mat-label class="disclaimer">*Campos Obligatorios</mat-label>
+    </div>  
+    <div class="form-row" style="margin-top: -26px;">        
+      <mat-label class="disclaimer">**Al menos uno de los dos campos ha de completarse</mat-label>
+  </div>  
+    <section class=" modal-buttons">
+      <button  mat-raised-button (click)="closeModal()"  class="" id="close" matTooltip="Cerrar sin guardar">Cerrar sin guardar</button>    
+      <button *ngIf="!data.datos.id" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="create" [disabled]="formGroup.invalid || !validatorInterAgru"
+        matTooltip="Crear derecho">Crear derecho</button>
+      <button *ngIf="data.datos.id" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="edit" [disabled]="formGroup.invalid || !validatorInterAgru"
+        matTooltip="Guardar cambio">Guardar cambios</button>     
+    </section>
+  </form>

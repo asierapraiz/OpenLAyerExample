@@ -1,0 +1,111 @@
+<header class="modal-header-material">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <p mat-dialog-subtitle>{{subtitle}}</p>
+</header>
+<form [formGroup]="formGroup">
+  <div class="form-row">
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Departamento" formControlName="departamento" >
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let departamento of departamentos" [value]="departamento">
+          {{departamento}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Municipio" formControlName="municipio" >
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let municipio of municipios" [value]="municipio">
+          {{municipio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="campo full-width" class="numeroPredial">
+      <mat-label>Número predial</mat-label>
+      <input formControlName="numeroPredial" id="numeroPredial" matInput>
+      <mat-error *ngIf="formGroup.controls.numeroPredial.errors?.required">Campo requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="campo full-width" class="numeroOperacion">
+      <mat-label>Número operación</mat-label>
+      <input formControlName="operacion" id="operacion" matInput>
+      <mat-error *ngIf="formGroup.controls.operacion.errors?.required">Campo requerido
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Clase suelo" formControlName="claseSueloTipo">
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let claseSuelo of claseSuelosTipos" [value]="claseSuelo.descripcion">
+          {{claseSuelo.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Condición" formControlName="condicionPredioTipo" >
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let condicion of condicionPredioTipos" [value]="condicion.descripcion">
+          {{condicion.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Categoría suelo" formControlName="categoriaSueloTipo" >
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let categoriaSuelo of categoriaSuelosTipos" [value]="categoriaSuelo.descripcion">
+          {{categoriaSuelo.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Dest económica" formControlName="destinacionEconomicaTipo" >
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let destEconomica of destEconomicasTipos" [value]="destEconomica.descripcion">
+          {{destEconomica.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Tipo predio" formControlName="predioTipo">
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let tipoPredio of prediosTipos" [value]="tipoPredio.descripcion">
+          {{tipoPredio.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="campo full-width">
+      <mat-select placeholder="Estado" formControlName="estadoPredio" name="estadoPredio" >
+        <mat-option [value]="null">--</mat-option>
+        <mat-option *ngFor="let estado of estadosPredioTipos" [value]="estado.descripcion">
+          {{estado.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <section class=" modal-buttons">
+    <button  mat-raised-button (click)="closeModal()"  class="" id="close" matTooltip="Cerrar sin guardar">Cerrar sin guardar</button>    
+    <button *ngIf="!predio.id" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="create" [disabled]="formGroup.invalid"
+      matTooltip="Crear predio">Crear predio</button>
+    <button *ngIf="predio.id" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="edit" [disabled]="formGroup.invalid"
+      matTooltip="Guardar cambio">Guardar cambios</button>     
+  </section>
+</form>

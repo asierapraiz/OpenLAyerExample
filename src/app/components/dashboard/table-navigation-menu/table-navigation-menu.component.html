@@ -1,0 +1,20 @@
+<!----------------->
+
+<button mat-mini-fab color="primary" class="" id="goto"
+  [matTooltip]="toolTip" [matMenuTriggerFor]="menu">
+  <mat-icon>input</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">  
+  <!--
+  <ng-container *ngFor="let ruta of rutas">
+  <button  *ngIf="!actual.includes(ruta.nombre)" mat-menu-item (click)="goTo(ruta.nombre)">{{ruta.nombre | titlecase}}</button>  
+</ng-container>-->
+<button  mat-menu-item (click)="goTo(next)">Ir a {{ next }}s</button>
+
+<ng-container>
+  <button  mat-menu-item (click)="goTo(next)">Ir a {{ next }}s</button>
+</ng-container>
+</mat-menu>
+
+<!----------------->

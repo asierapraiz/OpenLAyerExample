@@ -1,0 +1,27 @@
+.title {
+    padding: 0px 5px;
+    font-size: large;
+    color: grey;
+    font-weight: 700;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;   
+    padding: 0px 10px;    
+}
+
+.filter-buttons{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+
+    button{
+        margin-right: 5px;
+    }
+}
+
+

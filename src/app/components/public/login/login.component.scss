@@ -1,0 +1,30 @@
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    height: 100%;
+    background-image: url("/assets/images/MH_V_color.png");  
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+  .login {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .ancho {
+    width: 80%;
+  }
+
+  .mat-card{
+    background-color: rgba(165, 206, 204, 0.767);
+  }
+  .btn-login{
+    background-color: rgba(141, 177, 189, 0.767);
+  }
+
+

@@ -1,0 +1,38 @@
+<header class="modal-header-material">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <p class="subtitle">{{subtitle}}</p>
+</header>
+
+<div mat-dialog-content>
+
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+      <mat-form-field class="campo full-width">
+        <mat-select placeholder="Tipo de agrupación de interesados" formControlName="grupoInteresadoTipo">
+          <mat-option *ngFor="let grupoInteresadoTipo of grupoInteresadoTipos" [value]="grupoInteresadoTipo.descripcion">
+            {{grupoInteresadoTipo.descripcion}}
+          </mat-option>
+        </mat-select>
+        <!--<mat-error *ngIf="formGroup.controls.agrupacionInteresadosTipo.errors?.required">Campo requerido</mat-error>-->
+      </mat-form-field>
+
+      <mat-form-field class="campo full-width" class="dni">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="nombre" id="nombre" matInput>
+        <!--<mat-error *ngIf="formGroup.controls.nombre.errors?.required">Campo requerido</mat-error>-->
+      </mat-form-field>
+    </div>
+
+
+    <section class="modal-buttons">
+      <button mat-raised-button (click)="closeModal()" class="" id="close" matTooltip="Cerrar sin guardar">Cerrar sin
+        guardar</button>
+      <button *ngIf="!agrupacionInteresados" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="create"
+        [disabled]="formGroup.invalid" matTooltip="Crear interesado">Crear Agrupación</button>
+        
+      <button *ngIf="agrupacionInteresados" mat-raised-button (click)="saveOrUpdate()" color="primary" class="" id="edit"
+        [disabled]="formGroup.invalid" matTooltip="Guardar cambio">Guardar cambios</button>
+    </section>
+  </form>
+
+</div>

@@ -1,0 +1,8 @@
+<h3 class="primary title">Capas:</h3>
+
+<mat-selection-list #capasList [(ngModel)]="selectedOptions">
+    <mat-list-option *ngFor="let capa of capas" (click)="acapasSeleccionadas(capasList)" [value]="capa" >
+      {{capa}}
+    </mat-list-option>
+  </mat-selection-list>
+

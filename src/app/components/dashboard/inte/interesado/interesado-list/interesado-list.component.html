@@ -1,0 +1,145 @@
+<div class="container">
+
+    <app-interesado-filter (propagar)="filtrarInteresados($event)"></app-interesado-filter>
+    <div class="buttons">
+        <button mat-mini-fab color="primary" (click)="checkIfPredio()" matTooltip="Crear interesado">
+            <mat-icon>add_box</mat-icon>
+        </button>
+        <button mat-mini-fab *ngIf="comeFrom" color="primary" class="" id="filter" (click)="backTo()"
+            matTooltip="Volver al elemento anterior.">
+            <mat-icon>input</mat-icon>
+        </button>
+
+       
+        <button mat-raised-button *ngIf="nombreAgrupacion" color="primary" class=""
+            matTooltip="Agrupación seleccionada">
+            Agrupacion: {{nombreAgrupacion}}
+            <mat-icon aria-label="Example home icon" *ngIf="nombreAgrupacion"
+                matTooltip="Elimina la agrupcaión de la selección" (click)="eliminarAgrupacion()">delete</mat-icon>
+        </button>
+
+        <button mat-raised-button *ngIf="predioId" color="primary" class=""
+            matTooltip="Predio seleccionada">
+            Predio: {{predioId}}
+            <mat-icon aria-label="Example home icon" *ngIf="predioId"
+                matTooltip="Elimina el predio de la selección" (click)="eliminarPredio()">delete</mat-icon>
+        </button>
+
+    </div>
+    <section id="tabla" class="tabla">
+
+        <div class="paginator">
+            <mat-paginator [length]="totalElements" [pageSizeOptions]="elementsPage" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+
+        <div class="table-container">
+
+            <mat-spinner *ngIf="showSpinner" [diameter]="100" class="table-spinner"></mat-spinner>
+
+            <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="tipoDocumento">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo documento</th>
+                    <td mat-cell *matCellDef="let element"> {{element.interesadoDocumentoTipo?.descripcion}} </td>
+                </ng-container>
+
+                <div class="form-column"></div>
+                <ng-container matColumnDef="documentoIdentidad">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Documento identidad</th>
+                    <td mat-cell *matCellDef="let element"> {{element.documentoIdentidad}} </td>
+                </ng-container>
+                <ng-container matColumnDef="primerNombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                    <td mat-cell *matCellDef="let element"> {{element.primerNombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="segundoNombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>2º nombre</th>
+                    <td mat-cell *matCellDef="let element"> {{element.segundoNombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="primerApellido">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>1º apellido</th>
+                    <td mat-cell *matCellDef="let element"> {{element.primerApellido}} </td>
+                </ng-container>
+                <ng-container matColumnDef="segundoApellido">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>2º apellido</th>
+                    <td mat-cell *matCellDef="let element"> {{element.segundoApellido}} </td>
+                </ng-container>
+                <ng-container matColumnDef="sexoTipo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sexo</th>
+                    <td mat-cell *matCellDef="let element"> {{element.sexoTipo?.descripcion}} </td>
+                </ng-container>
+                <ng-container matColumnDef="grupoEtnicoTipo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Grupo étnico</th>
+                    <td mat-cell *matCellDef="let element"> {{element.grupoEtnicoTipo?.descripcion }}</td>
+                </ng-container>
+                <ng-container matColumnDef="razonSocial">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Razón social</th>
+                    <td mat-cell *matCellDef="let element"> {{element.razonSocial}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre RS</th>
+                    <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+                </ng-container>
+
+                <!--
+                    
+                <ng-container matColumnDef="fechaCaptura">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha captura</th>
+                    <td mat-cell *matCellDef="let element"> {{element.fechaCaptura | date: 'd-M-yyyy'}} </td>
+                </ng-container>
+
+                -->
+
+                <ng-container matColumnDef="fechaUltimaModificacion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Últimamodificación</th>
+                    <td mat-cell *matCellDef="let element"> {{element.fechaUltimaModificacion | date: 'd-M-yyyy'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="autorUltimaModificacion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor </th>
+                    <td mat-cell *matCellDef="let element"> {{element.autorUltimaModificacion}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th *matHeaderCellDef mat-header-cell></th>
+                    <td *matCellDef="let interesado; let i = index" [id]="'actions'+ (i + 1)" mat-cell>
+
+                        <button mat-mini-fab color="primary" (click)="openAddOrUpdateInteresadoModal(interesado)"
+                            matTooltip="Editar interesado">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" (click)="deleteInteresado(interesado.id)"
+                            matTooltip="Eliminar interesado">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+
+
+                        <button mat-mini-fab color="primary" class="goto" matTooltip="Ir a los elementos relacionados"
+                            [matMenuTriggerFor]="menu">
+                            <mat-icon>input</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <ng-container>
+                                <button mat-menu-item routerLink="{{interesado.id}}/predio">Predios</button>
+                                <button mat-menu-item
+                                    routerLink="{{interesado.id}}/agrupacion">AgrupacionesInteresados</button>
+                                <button mat-menu-item routerLink="{{interesado.id}}/derecho"
+                                    class="mat-bread-crumb-list-chip">Derechos</button>
+                                <!-- <button mat-menu-item routerLink="/dashboard/interesado/{{interesado.id}}/derecho" class="mat-bread-crumb-list-chip">Derechos</button>    -->
+                            </ng-container>
+                        </mat-menu>
+
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </section>
+</div>
